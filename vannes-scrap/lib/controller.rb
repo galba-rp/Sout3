@@ -84,7 +84,6 @@ class Controller
   def averagePrice
     avgPrice = @db.execute("SELECT AVG(price) FROM property WHERE cityName='#{@sanitized_data[:cityName]}'")
     avgArea = @db.execute("SELECT AVG(surface) FROM property WHERE cityName='#{@sanitized_data[:cityName]}'")
-    
     @avgSqM = avgPrice[0][0]/avgArea[0][0]
    
     @priceSqM = @sanitized_data[:price]/@sanitized_data[:surface]

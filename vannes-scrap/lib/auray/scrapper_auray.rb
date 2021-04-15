@@ -35,6 +35,6 @@ sanitized_data =
       fee: fee
     ).to_h
 @db.execute("INSERT OR IGNORE INTO city VALUES (:city_name)", sanitized_data[:cityName])
-@db.execute("INSERT OR IGNORE INTO property VALUES (:id, :title, :cityName, :postCode, :price, :surface, :energy, :year, :url, :img, :fee)", sanitized_data)
+@db.execute("INSERT OR IGNORE INTO property VALUES ( :id, :title, :postCode, :price,  :surface, :energy, :year, :url, :img, :fee, :cityName)", sanitized_data)
  i += 1
 end
