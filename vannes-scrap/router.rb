@@ -4,6 +4,7 @@ require 'json'
 require './lib/controller'
 
 
+
 require "pry"
 
 
@@ -31,14 +32,16 @@ class Router
 
      case path
        when "/get-info"
-        # [200, {"Content-Type" => "application/json", "Access-Control-Allow-Origin" => "*"}, {boy: "answer"}]
         if url.include?("simply-home-cda") 
-          [200, {"Content-Type" => "application/json", "Access-Control-Allow-Origin" => "*"}, {boy: "answer"}]
-        elsif  url.include?("simply-home-groupe")
-          [200, {"Content-Type" => "application/json", "Access-Control-Allow-Origin" => "*"}, {boy: "answer"}]
+          res = controller.getHouseInfoAuray(url)
+          [200, {"Content-Type" => "application/json", "Access-Control-Allow-Origin" => "*"}, [res.to_json]]
+        elsif  url.include?("simply-home-group")
+          res = controller.getHouseInfoQuestembert(url)
+         
+          [200, {"Content-Type" => "application/json", "Access-Control-Allow-Origin" => "*"}, [res.to_json]]
         else
-          res = controller.getHouseInfoVannes(url)
-          [200, {"Content-Type" => "application/json", "Access-Control-Allow-Origin" => "*"}, [res]]
+          res = controller.getHouseInfoVannes(url) 
+          [200, {"Content-Type" => "application/json", "Access-Control-Allow-Origin" => "*"}, [res.to_json]]
      
         end 
 

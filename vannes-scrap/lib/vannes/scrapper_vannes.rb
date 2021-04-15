@@ -2,6 +2,7 @@ require "nokogiri"
 require "open-uri"
 require "pry"
 require "sqlite3"
+
 require "./lib/house-sanit"
 
 
@@ -19,7 +20,9 @@ while i < 16 do
   price = app.css(".price").text
   energy = app.css(".energy").text
   year = app.css(".foundation-years").text
-
+  img = app.css("#singleArticleImage img").attr("src").value
+  title = app.css("#titleSingleArticle h2").text
+  fee = app.css("#articleSubContent").text
 
 sanitized_data = 
     HouseSanitizer.new(
@@ -28,12 +31,14 @@ sanitized_data =
       surface: surface,
       energy: energy,
       cityName: "",
-      postCode: 0,
+      postCode: "",
       year: year,
-      url: url
+      url: url,
+      img: img,
+      title: title,
+      fee: fee
     ).to_h
-
 @db.execute("INSERT OR IGNORE INTO city VALUES (:city_name)", sanitized_data[:cityName])
-@db.execute("INSERT OR IGNORE INTO property VALUES (:id, :cityName,  :price, :surface, :energy, :year, :url, :postCode)", sanitized_data)
+@db.execute("INSERT OR IGNORE INTO property VALUES (:id, :title, :cityName, :postCode, :price, :surface, :energy, :year, :url, :img, :fee)", sanitized_data)
  i += 1
 end

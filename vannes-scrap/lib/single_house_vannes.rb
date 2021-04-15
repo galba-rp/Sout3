@@ -19,9 +19,12 @@ class SingleHouse
       surface: surface,
       energy: energy,
       cityName: "",
-      postCode: 0,
+      postCode: "",
       year: year,
-      url: url
+      url: url,
+      img: img,
+      title: title,
+      fee: fee
     ).to_h
     binding.pry
 end
