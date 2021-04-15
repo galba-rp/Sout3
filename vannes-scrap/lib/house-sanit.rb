@@ -8,6 +8,7 @@ class HouseSanitizer
     @logger = []
   end 
 
+  
   # # checking unit of area and raising an error if not "m²"
   #   def surface_validatio
   #   unless @data[:surfase].include?("m")
@@ -15,16 +16,25 @@ class HouseSanitizer
   # end
 
   def to_h
+    @data.each { |name, value|   
+       if !value.nil?  && !value.include?('http') && value.include?(':') 
+        @data[name] = value.split(':').last
+       end
+    }
+
     begin
+      
       cleanSurface
       cleanPrice
       cleanCityName
       cleanPostcode
       cleanYear
       cleanEnergy
+      cleanImage
+      cleanTitle
+      cleanFee
       @data.delete(:city)
       @data
-      
     rescue => error
       @logger << error.message
       {}
@@ -81,4 +91,27 @@ class HouseSanitizer
     @data[:energy] = @data[:energy].strip.upcase
   end
 
+  def cleanImage
+    case 
+      when @data[:url].include?("simply-home-cda")
+        @data[:img] = "https://simply-home-cda.herokuapp.com/" + @data[:img]
+      when @data[:url].include?("simply-home-group")
+        @data[:img] = "https://simply-home-group.herokuapp.com/" + @data[:img]
+      else 
+        @data[:img] = "https://simply-home.herokuapp.com//" + @data[:img]
+      end
+  end
+
+  def cleanTitle
+    @data[:title] = @data[:title].strip.capitalize
+  end
+
+  def cleanFee
+   if @data[:fee].include?("[no]") 
+    @data[:fee] = 0
+   else 
+    @data[:fee] = 1
+   end
+  
+  end
 end

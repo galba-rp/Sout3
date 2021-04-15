@@ -9,4 +9,4 @@ gem "nokogiri"
 gem "pry"
 gem "sqlite3"
 gem "rspec"
-gem 'rack-cors'
+gem 'rack-cors', require: "rack/cors"
