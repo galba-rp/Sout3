@@ -1,4 +1,5 @@
 class House
+
   BASE = {
       city: city,
       price: price,

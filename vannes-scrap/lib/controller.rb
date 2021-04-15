@@ -84,8 +84,9 @@ class Controller
   def averagePrice
     avgPrice = @db.execute("SELECT AVG(price) FROM property WHERE cityName='#{@sanitized_data[:cityName]}'")
     avgArea = @db.execute("SELECT AVG(surface) FROM property WHERE cityName='#{@sanitized_data[:cityName]}'")
+    
     @avgSqM = avgPrice[0][0]/avgArea[0][0]
-  
+   
     @priceSqM = @sanitized_data[:price]/@sanitized_data[:surface]
     case
       when @priceSqM < @avgSqM*0.75 
@@ -158,6 +159,13 @@ class Controller
     @sanitized_data[:priceRangeHigh] = (@avgSqM*1.1*@sanitized_data[:surface]/1000).to_i
   end
 
+  def getAnalytics
+    averagePrice
+    averageYear
+    averageRenov
+    averageEnergy
+    estimation
+  end
   def getHouseInfoVannes(url)
     
     app = getApp(url)
@@ -185,11 +193,7 @@ class Controller
       title: title,
       fee: fee
     ).to_h
-    averagePrice
-    averageYear
-    averageRenov
-    averageEnergy
-    estimation
+    getAnalytics
    @sanitized_data
   end
 
@@ -203,7 +207,6 @@ class Controller
       img = app.css("#secion-ad img").first.attr("src")
       fee = app.css("#single-ad-description p")[6].text
       title = app.css("h1").text
-      
       @sanitized_data =  HouseSanitizer.new(
         city: city,
         price: price,
@@ -217,6 +220,9 @@ class Controller
         title: title,
         fee: fee
       ).to_h
+   
+      getAnalytics
+      @sanitized_data
     end
 
     def getHouseInfoQuestembert(url)
@@ -243,5 +249,7 @@ class Controller
           title: title,
           fee: fee
         ).to_h
+        getAnalytics
+        @sanitized_data
     end
 end

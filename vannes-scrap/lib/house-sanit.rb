@@ -92,9 +92,8 @@ class HouseSanitizer
   end
 
   def cleanImage
-    case @data[:url]
+    case 
       when @data[:url].include?("simply-home-cda")
-       
         @data[:img] = "https://simply-home-cda.herokuapp.com/" + @data[:img]
       when @data[:url].include?("simply-home-group")
         @data[:img] = "https://simply-home-group.herokuapp.com/" + @data[:img]
