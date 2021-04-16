@@ -25,53 +25,48 @@
   </section>
   <section id="results" class="flex shadow-2xl">
     <div class="flex-none w-48 relative">
-      <img src="./images/boardimo/house.png" alt="" class="absolute inset-0 w-full h-full object-cover" />
+      <img src="" alt="" class="absolute inset-0 w-full h-full object-cover d-none" />
     </div>
     <form class="flex-auto p-6">
       <div class="flex flex-wrap">
-        <h1 class="flex-auto text-xl font-semibold"> Maison contemporaine au centre de séné </h1>
-        <div class="text-xl font-semibold text-gray-500"> 718 500 € </div>
+        <h1 class="flex-auto text-xl font-semibold"></h1>
+        <div class="text-xl font-semibold text-gray-500"></div>
       </div>
       <div class="divide-y divide-fuchsia-300">
-        <div><span class="badge bg-primary">165m²</span> <span class="badge bg-primary">2012</span> <span
-            class="badge bg-d">D</span></div>
+        <div><span class="badge bg-primary"></span> <span class="badge bg-primary"></span> <span
+            class="badge bg-d"></span></div>
         <br>
-        <div class="bottom-divide">Prix par m² <span class="price">4363€</span></div>
+        <div class="bottom-divide"><span class="price"></span></div>
       </div>
     </form>
   </section>
   <section id="analyse">
     <h2>Analyse du bien</h2>
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert" id="priceBlock">
       <h4 class="alert-heading">Prix du bien</h4>
-      <p>À Vannes, le prix moyen d'une maison au m² est de <b>3650€</b> soit 17% inférieur au prix de ce bien.</p>
+      <p id='avgSqMerter'></p>
     </div>
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-info" role="alert" id="yearBlock">
       <h4 class="alert-heading">Année de construction</h4>
-      <p>Cette maison <b>est plus récente que 73%</b> des maisons en vente actuellement et a en moyenne <b>8 ans de
-          moins que la concurrence</b></p>
+      <p></p>
       <hr>
-      <p class="mb-0">Suite à un achat de ce type, un acquereur dépensera en moyenne <b>39 600€ de rénovations en tout
-          genre</b> soit <b>17 325€ de moins</b> que la moyenne pour cette surface</p>
+      <p class="mb-0"></p>
     </div>
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-warning" role="alert" id="energyBlock">
       <h4 class="alert-heading">Classe énergie</h4>
-      <p>Cette maison a une <b>classe énergétique D</b> ce qui est moins bien que 51% des maisons en vente
-        actuellement</b></p>
+      <p></p>
       <hr>
-      <p class="mb-0">Le surcoût énergétique par m2 est estimé à 30.4€</b>
+      <p class="mb-0"></b>
       </p>
     </div>
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert" id="estimBlock">
       <h4 class="alert-heading">Estimation</h4>
-      <p>En prenant en compte l'année de construction, la localisation et le prix au m2 nous pensons que cette maison
-        est surévaluée.</p>
+      <p></p>
       <hr>
-      <p class="mb-0">Afin de correspondre au prix du marché nous évaluons que le prix de ce bien devrait se situer
-        entre <b>552k€</b> et <b>675k€</b></p>
+      <p class="mb-0"></p>
     </div>
   </section>
 </body>
-<script src="fetch.js"></script>
+<script type="text/javascript" src="./fetch.js"></script>
 
 </html>

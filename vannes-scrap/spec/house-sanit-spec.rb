@@ -59,7 +59,5 @@ house = described_class.new(data)
 
       expect(energy).to eql("B")
     end
-  end
-
-  
+  end  
 end
